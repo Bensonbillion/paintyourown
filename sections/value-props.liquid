@@ -1,0 +1,110 @@
+<section class="section">
+  <div class="container">
+    {%- if section.settings.title != blank -%}
+      <div class="section__header">
+        <h2 class="section__title">{{ section.settings.title }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="value-props">
+      {%- for block in section.blocks -%}
+        <div class="value-prop{% if forloop.index == 2 %} value-prop--reverse{% endif %}" {{ block.shopify_attributes }}>
+          <div class="value-prop__image-wrap">
+            {%- if block.settings.image != blank -%}
+              <img class="value-prop__image"
+                   src="{{ block.settings.image | image_url: width: 600 }}"
+                   alt="{{ block.settings.title | escape }}"
+                   loading="lazy"
+                   width="600"
+                   height="400">
+            {%- else -%}
+              {{ 'lifestyle-' | append: forloop.index | placeholder_svg_tag: 'value-prop__image' }}
+            {%- endif -%}
+          </div>
+          <div class="value-prop__content">
+            <h3 class="value-prop__title">{{ block.settings.title }}</h3>
+            <p class="value-prop__text">{{ block.settings.text }}</p>
+            {%- if block.settings.button_label != blank -%}
+              <a href="{{ block.settings.button_link }}" class="btn btn--primary btn--small mt-3">
+                {{ block.settings.button_label }}
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Value Props",
+  "class": "value-props-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "Why This Beats Another Netflix Night"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "prop",
+      "name": "Value Prop",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Better Than Another Restaurant"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Skip the reservations and create something together. A creative experience you'll remember long after dessert would be forgotten."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Value Props",
+      "blocks": [
+        {
+          "type": "prop",
+          "settings": {
+            "title": "Better Than Another Restaurant",
+            "text": "Skip the reservations and create something together. A creative experience you'll remember long after dessert would be forgotten.",
+            "button_label": "Shop Twin Sets"
+          }
+        },
+        {
+          "type": "prop",
+          "settings": {
+            "title": "Not Flowers. Not Chocolate. A Memory.",
+            "text": "Give them something they'll actually keep. A handmade figurine is a keepsake that tells a story every time they look at it."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,212 @@
+<div class="container">
+  <!-- Page Header -->
+  <div class="hiw-page__header">
+    <h1 class="hiw-page__title">{{ section.settings.title | default: 'How Paint Your Own Works' }}</h1>
+    <p class="hiw-page__subtitle">{{ section.settings.subtitle | default: 'From order to masterpiece in three simple steps' }}</p>
+  </div>
+
+  <!-- Step 1 -->
+  <div class="hiw-page__step">
+    <div>
+      <span class="hiw-page__step-number">1</span>
+      <h2 class="hiw-page__step-title">{{ section.settings.step1_title | default: 'Order Online' }}</h2>
+      <div class="hiw-page__step-text">
+        {{ section.settings.step1_text | default: '<p>Browse our collection of paint-ready figurines and choose your size. Every order includes a complete paint kit with brushes, paints, and step-by-step guide.</p><p>Solo project? Twin Set for two? Party Pack for groups? We have options for every occasion.</p>' }}
+      </div>
+    </div>
+    <div class="hiw-page__image">
+      {%- if section.settings.step1_image != blank -%}
+        <img src="{{ section.settings.step1_image | image_url: width: 600 }}"
+             alt="Order your figurine online"
+             loading="lazy" width="600" height="450">
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag }}
+      {%- endif -%}
+    </div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="hiw-page__step">
+    <div>
+      <span class="hiw-page__step-number">2</span>
+      <h2 class="hiw-page__step-title">{{ section.settings.step2_title | default: 'We Ship It' }}</h2>
+      <div class="hiw-page__step-text">
+        {{ section.settings.step2_text | default: '<p>Your figurine is carefully packaged and shipped within 3-5 business days. Track your order from warehouse to your door.</p>' }}
+      </div>
+      <ul class="hiw-page__step-list">
+        <li>Your figurine(s) - primed and ready</li>
+        <li>Complete paint set</li>
+        <li>Brushes and palette</li>
+        <li>Beginner-friendly guide</li>
+        <li>Display stand</li>
+      </ul>
+    </div>
+    <div class="hiw-page__image">
+      {%- if section.settings.step2_image != blank -%}
+        <img src="{{ section.settings.step2_image | image_url: width: 600 }}"
+             alt="Unbox your paint kit"
+             loading="lazy" width="600" height="450">
+      {%- else -%}
+        {{ 'product-2' | placeholder_svg_tag }}
+      {%- endif -%}
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="hiw-page__step" style="border-bottom:none;">
+    <div>
+      <span class="hiw-page__step-number">3</span>
+      <h2 class="hiw-page__step-title">{{ section.settings.step3_title | default: 'You Paint at Home' }}</h2>
+      <div class="hiw-page__step-text">
+        {{ section.settings.step3_text | default: '<p>Set up anywhere—kitchen table, coffee table, backyard. Follow our guide or freestyle your own design. Most people finish in 2-3 hours.</p><p>There\'s no wrong way to paint. Every piece is unique.</p><p>When you\'re done, let it dry (1-2 hours) and display your creation proudly. Share it with #PaintYourOwn to be featured on our page!</p>' }}
+      </div>
+    </div>
+    <div class="hiw-page__image">
+      {%- if section.settings.step3_image != blank -%}
+        <img src="{{ section.settings.step3_image | image_url: width: 600 }}"
+             alt="Paint your figurine"
+             loading="lazy" width="600" height="450">
+      {%- else -%}
+        {{ 'product-3' | placeholder_svg_tag }}
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<!-- FAQ Section -->
+<div class="faq-section">
+  <div class="container">
+    <h2 class="faq-section__title">Frequently Asked Questions</h2>
+    <div class="faq-grid">
+      <div class="accordion">
+        {%- for block in section.blocks -%}
+          <div class="accordion__item" {{ block.shopify_attributes }}>
+            <button class="accordion__header" data-accordion-toggle aria-expanded="false">
+              <span>{{ block.settings.question }}</span>
+              <span class="accordion__icon">&#9660;</span>
+            </button>
+            <div class="accordion__body">
+              <div class="accordion__content">
+                {{ block.settings.answer }}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <h2 class="cta-banner__title">Ready to Start?</h2>
+  <div class="cta-banner__actions">
+    <a href="/collections/all" class="btn btn--primary btn--large">Browse All Figurines</a>
+    <a href="/collections/twin-sets" class="btn btn--secondary btn--large">Shop Twin Sets</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "How It Works Page",
+  "class": "hiw-page-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page title",
+      "default": "How Paint Your Own Works"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "From order to masterpiece in three simple steps"
+    },
+    {
+      "type": "image_picker",
+      "id": "step1_image",
+      "label": "Step 1 image"
+    },
+    {
+      "type": "text",
+      "id": "step1_title",
+      "label": "Step 1 title",
+      "default": "Order Online"
+    },
+    {
+      "type": "richtext",
+      "id": "step1_text",
+      "label": "Step 1 text",
+      "default": "<p>Browse our collection of paint-ready figurines and choose your size. Every order includes a complete paint kit with brushes, paints, and step-by-step guide.</p><p>Solo project? Twin Set for two? Party Pack for groups? We have options for every occasion.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "step2_image",
+      "label": "Step 2 image"
+    },
+    {
+      "type": "text",
+      "id": "step2_title",
+      "label": "Step 2 title",
+      "default": "We Ship It"
+    },
+    {
+      "type": "richtext",
+      "id": "step2_text",
+      "label": "Step 2 text",
+      "default": "<p>Your figurine is carefully packaged and shipped within 3-5 business days. Track your order from warehouse to your door.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "step3_image",
+      "label": "Step 3 image"
+    },
+    {
+      "type": "text",
+      "id": "step3_title",
+      "label": "Step 3 title",
+      "default": "You Paint at Home"
+    },
+    {
+      "type": "richtext",
+      "id": "step3_text",
+      "label": "Step 3 text",
+      "default": "<p>Set up anywhere—kitchen table, coffee table, backyard. Follow our guide or freestyle your own design. Most people finish in 2-3 hours.</p><p>There's no wrong way to paint. Every piece is unique.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Do I need to be artistic?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Not at all. Our guide walks you through everything. Even beginners create amazing results.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works Page",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "Do I need to be artistic?", "answer": "<p>Not at all. Our guide walks you through everything. Even beginners create amazing results.</p>" } },
+        { "type": "faq", "settings": { "question": "What's included in the paint kit?", "answer": "<p>6-12 acrylic colors, brushes, palette, guide, and everything you need to complete your figurine.</p>" } },
+        { "type": "faq", "settings": { "question": "How long does painting take?", "answer": "<p>Most people finish in 2-3 hours. Take your time and enjoy the process—it's not a race!</p>" } },
+        { "type": "faq", "settings": { "question": "Can kids participate?", "answer": "<p>Yes! Ages 6+ can paint with supervision. Our paints are non-toxic and kid-safe.</p>" } },
+        { "type": "faq", "settings": { "question": "What if I mess up?", "answer": "<p>Acrylic paint is forgiving—just paint over mistakes. There's no \"perfect\" way to paint!</p>" } },
+        { "type": "faq", "settings": { "question": "How do I display the finished figurine?", "answer": "<p>Each order includes a display stand. Show it off on a shelf, desk, or anywhere you want!</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

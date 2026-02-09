@@ -1,0 +1,78 @@
+<section class="section section--gray">
+  <div class="container">
+    <div class="section__header">
+      <h2 class="section__title">{{ section.settings.title | default: 'How It Works' }}</h2>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="section__subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="how-it-works__grid">
+      {%- for block in section.blocks -%}
+        <div class="how-it-works__step" {{ block.shopify_attributes }}>
+          <div class="how-it-works__icon">{{ block.settings.icon }}</div>
+          <span class="how-it-works__step-number">{{ forloop.index }}</span>
+          <h3 class="how-it-works__step-title">{{ block.settings.title }}</h3>
+          <p class="how-it-works__step-text">{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How It Works",
+  "class": "how-it-works-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "How It Works"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "From order to masterpiece in three simple steps"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)",
+          "default": "🛒"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Order Online"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Pick your character and size."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works",
+      "blocks": [
+        { "type": "step", "settings": { "icon": "🛒", "title": "Order Online", "text": "Pick your character and size. Every order includes a complete paint kit." } },
+        { "type": "step", "settings": { "icon": "📦", "title": "We Ship It", "text": "Your character arrives ready to paint within 3-5 business days." } },
+        { "type": "step", "settings": { "icon": "🎨", "title": "You Paint", "text": "Get creative and bring it to life. No experience needed." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

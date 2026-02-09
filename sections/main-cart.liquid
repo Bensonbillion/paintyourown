@@ -1,0 +1,105 @@
+<section class="cart-page">
+  <div class="container">
+    <h1 class="cart-page__title">Your Cart</h1>
+
+    {%- if cart.items.size > 0 -%}
+      {%- if settings.show_free_shipping_bar -%}
+        {%- assign threshold = settings.free_shipping_threshold | times: 100 -%}
+        {%- assign remaining = threshold | minus: cart.total_price -%}
+        {%- if remaining > 0 -%}
+          {%- assign progress = cart.total_price | times: 100 | divided_by: threshold -%}
+        {%- else -%}
+          {%- assign progress = 100 -%}
+        {%- endif -%}
+
+        <div class="shipping-bar" style="max-width:500px;margin-bottom:32px;">
+          {%- if remaining > 0 -%}
+            <p class="shipping-bar__text">
+              You're <strong>{{ remaining | money }}</strong> away from free shipping!
+            </p>
+          {%- else -%}
+            <p class="shipping-bar__text" style="color:#16a34a;">
+              <strong>&#10003; You've unlocked free shipping!</strong>
+            </p>
+          {%- endif -%}
+          <div class="shipping-bar__track">
+            <div class="shipping-bar__fill" style="width: {{ progress }}%;"></div>
+          </div>
+        </div>
+      {%- endif -%}
+
+      <form action="/cart" method="post">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th></th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for item in cart.items -%}
+              <tr>
+                <td style="width:100px;">
+                  {%- if item.image -%}
+                    <img src="{{ item.image | image_url: width: 160 }}"
+                         alt="{{ item.title | escape }}"
+                         style="width:80px;height:80px;object-fit:cover;border-radius:8px;"
+                         loading="lazy">
+                  {%- endif -%}
+                </td>
+                <td>
+                  <a href="{{ item.url }}" style="font-weight:600;">{{ item.product.title }}</a>
+                  {%- unless item.variant.title == 'Default Title' -%}
+                    <div style="font-size:0.8125rem;color:var(--color-text-light);">{{ item.variant.title }}</div>
+                  {%- endunless -%}
+                </td>
+                <td>{{ item.final_price | money }}</td>
+                <td>
+                  <div class="quantity-selector" style="margin:0;">
+                    <button type="button" class="quantity-selector__btn" data-line-minus="{{ forloop.index }}">-</button>
+                    <input type="number"
+                           name="updates[]"
+                           value="{{ item.quantity }}"
+                           min="0"
+                           class="quantity-selector__input"
+                           data-line-quantity="{{ forloop.index }}">
+                    <button type="button" class="quantity-selector__btn" data-line-plus="{{ forloop.index }}">+</button>
+                  </div>
+                </td>
+                <td style="font-weight:700;">{{ item.final_line_price | money }}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </form>
+
+      <div class="cart-page__footer">
+        <div class="cart-page__summary">
+          <div class="cart-page__total">
+            <span>Subtotal</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+          <p class="cart-page__shipping-note">Shipping & taxes calculated at checkout</p>
+          <a href="/checkout" class="btn btn--primary btn--full btn--large">Proceed to Checkout</a>
+          <a href="/collections/all" class="btn btn--secondary btn--full mt-2">Continue Shopping</a>
+        </div>
+      </div>
+    {%- else -%}
+      <div class="cart-page__empty">
+        <p>Your cart is empty</p>
+        <a href="/collections/all" class="btn btn--primary btn--large">Start Shopping</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cart Page",
+  "class": "cart-page-section",
+  "settings": []
+}
+{% endschema %}

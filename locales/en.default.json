@@ -1,0 +1,115 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to content",
+      "close": "Close"
+    },
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you're looking for doesn't exist."
+    },
+    "password_page": {
+      "opening_soon": "Opening Soon"
+    },
+    "breadcrumbs": {
+      "home": "Home"
+    },
+    "search": {
+      "placeholder": "Search...",
+      "submit": "Search",
+      "no_results": "No results found"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "added": "Added!",
+      "adding": "Adding...",
+      "buy_it_now": "Buy It Now",
+      "unavailable": "Unavailable",
+      "sold_out": "Sold Out",
+      "quantity": "Quantity",
+      "description": "Description",
+      "whats_included": "What's Included",
+      "shipping_info": "Shipping Info",
+      "return_policy": "Return Policy",
+      "faqs": "FAQs",
+      "share": "Share",
+      "from_price": "From {{ price }}",
+      "price": {
+        "regular": "Regular price",
+        "sale": "Sale price",
+        "from": "From"
+      }
+    }
+  },
+  "collections": {
+    "general": {
+      "all_products": "All Products",
+      "no_matches": "No products found",
+      "items_count": "{{ count }} products",
+      "sort_by": "Sort by"
+    },
+    "sorting": {
+      "title": "Sort by",
+      "featured": "Featured",
+      "best_selling": "Best selling",
+      "az": "Alphabetically, A-Z",
+      "za": "Alphabetically, Z-A",
+      "price_ascending": "Price, low to high",
+      "price_descending": "Price, high to low",
+      "date_descending": "Date, new to old",
+      "date_ascending": "Date, old to new"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your Cart",
+      "empty": "Your cart is empty",
+      "continue_shopping": "Continue Shopping",
+      "subtotal": "Subtotal",
+      "checkout": "Checkout",
+      "shipping_note": "Shipping & taxes calculated at checkout",
+      "remove": "Remove",
+      "update": "Update"
+    },
+    "shipping_bar": {
+      "free_shipping": "You've unlocked free shipping!",
+      "remaining": "You're {{ amount }} away from free shipping!"
+    }
+  },
+  "customer": {
+    "newsletter": {
+      "title": "Get creative inspiration & exclusive offers",
+      "email_placeholder": "Enter your email",
+      "subscribe": "Subscribe",
+      "success": "Thanks for subscribing!"
+    }
+  },
+  "sections": {
+    "header": {
+      "cart": "Cart",
+      "menu": "Menu"
+    },
+    "hero": {
+      "default_heading": "Paint a Character",
+      "default_subheading": "A relaxing, creative activity you'll actually finish."
+    },
+    "trust_bar": {
+      "reviews": "4.9 (2,500+ reviews)",
+      "shipping": "Ships in 3-5 days",
+      "free_shipping": "Free Shipping $100+",
+      "included": "Everything Included"
+    },
+    "how_it_works": {
+      "title": "How It Works",
+      "step1": "Order Online",
+      "step2": "We Ship It",
+      "step3": "You Paint"
+    }
+  }
+}

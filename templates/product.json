@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "main_product": {
+      "type": "main-product",
+      "settings": {
+        "review_count": "284"
+      }
+    },
+    "related_products": {
+      "type": "related-products",
+      "settings": {
+        "title": "You May Also Like"
+      }
+    }
+  },
+  "order": [
+    "main_product",
+    "related_products"
+  ]
+}

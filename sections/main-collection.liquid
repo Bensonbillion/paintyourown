@@ -1,0 +1,143 @@
+<section class="collection-page">
+  <div class="container">
+    <!-- Collection Header -->
+    <div class="collection-page__header">
+      <h1 class="collection-page__title">{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}
+        <div class="collection-page__description">{{ collection.description }}</div>
+      {%- endif -%}
+    </div>
+
+    <!-- Toolbar -->
+    <div class="collection-page__toolbar">
+      <span class="collection-page__count">{{ collection.products_count }} products</span>
+
+      <div style="display:flex;align-items:center;gap:16px;">
+        <!-- Mobile Filter Toggle -->
+        <button class="btn btn--small btn--secondary" data-filter-toggle style="display:none;">
+          Filters
+        </button>
+
+        <div class="collection-page__sort">
+          <label for="sort-select">Sort by:</label>
+          <select id="sort-select" data-sort-select>
+            {%- for option in collection.sort_options -%}
+              <option value="{{ option.value }}"{% if collection.sort_by == option.value %} selected{% endif %}>
+                {{ option.name }}
+              </option>
+            {%- endfor -%}
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="collection-page__layout">
+      <!-- Sidebar Filters -->
+      <aside class="collection-filters" data-collection-filters>
+        <!-- Price Filter -->
+        <div class="collection-filters__group">
+          <h3 class="collection-filters__title">Price</h3>
+          <label class="collection-filters__option">
+            <input type="checkbox" data-filter="price" value="under-50"> Under $50
+          </label>
+          <label class="collection-filters__option">
+            <input type="checkbox" data-filter="price" value="50-100"> $50 - $100
+          </label>
+          <label class="collection-filters__option">
+            <input type="checkbox" data-filter="price" value="100-plus"> $100+
+          </label>
+        </div>
+
+        <!-- Size Filter -->
+        <div class="collection-filters__group">
+          <h3 class="collection-filters__title">Size</h3>
+          <label class="collection-filters__option">
+            <input type="checkbox" data-filter="size" value="mini"> Mini (6")
+          </label>
+          <label class="collection-filters__option">
+            <input type="checkbox" data-filter="size" value="regular"> Regular (12")
+          </label>
+          <label class="collection-filters__option">
+            <input type="checkbox" data-filter="size" value="large"> Large (24")
+          </label>
+        </div>
+
+        <!-- Occasion Filter -->
+        <div class="collection-filters__group">
+          <h3 class="collection-filters__title">Occasion</h3>
+          <label class="collection-filters__option">
+            <input type="checkbox" data-filter="occasion" value="date-night"> Date Night
+          </label>
+          <label class="collection-filters__option">
+            <input type="checkbox" data-filter="occasion" value="family"> Family Activity
+          </label>
+          <label class="collection-filters__option">
+            <input type="checkbox" data-filter="occasion" value="gift"> Gift
+          </label>
+          <label class="collection-filters__option">
+            <input type="checkbox" data-filter="occasion" value="party"> Party / Event
+          </label>
+          <label class="collection-filters__option">
+            <input type="checkbox" data-filter="occasion" value="solo"> Solo Project
+          </label>
+        </div>
+
+        <!-- Number of People Filter -->
+        <div class="collection-filters__group">
+          <h3 class="collection-filters__title">Number of People</h3>
+          <label class="collection-filters__option">
+            <input type="checkbox" data-filter="people" value="1"> Solo (1)
+          </label>
+          <label class="collection-filters__option">
+            <input type="checkbox" data-filter="people" value="2"> Duo (2)
+          </label>
+          <label class="collection-filters__option">
+            <input type="checkbox" data-filter="people" value="4"> Family (4)
+          </label>
+          <label class="collection-filters__option">
+            <input type="checkbox" data-filter="people" value="6"> Group (6+)
+          </label>
+        </div>
+      </aside>
+
+      <!-- Product Grid -->
+      <div>
+        <div class="product-grid product-grid--3col">
+          {%- paginate collection.products by 12 -%}
+            {%- for product in collection.products -%}
+              {% render 'product-card', product: product %}
+            {%- else -%}
+              <p style="grid-column: 1 / -1; text-align:center; padding:40px; color:var(--color-text-light);">
+                No products found in this collection.
+              </p>
+            {%- endfor -%}
+          {%- endpaginate -%}
+        </div>
+
+        {%- if paginate.pages > 1 -%}
+          <div class="text-center mt-4">
+            {{ paginate | default_pagination }}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Page",
+  "class": "collection-page-section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 6,
+      "max": 24,
+      "step": 3,
+      "default": 12
+    }
+  ]
+}
+{% endschema %}

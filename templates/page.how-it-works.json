@@ -1,0 +1,65 @@
+{
+  "sections": {
+    "how_it_works_page": {
+      "type": "how-it-works-page",
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I need to be artistic?",
+            "answer": "<p>Not at all. Our guide walks you through everything. Even beginners create amazing results.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "What's included in the paint kit?",
+            "answer": "<p>6-12 acrylic colors, brushes, palette, guide, and everything you need to complete your figurine.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does painting take?",
+            "answer": "<p>Most people finish in 2-3 hours. Take your time and enjoy the process—it's not a race!</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Can kids participate?",
+            "answer": "<p>Yes! Ages 6+ can paint with supervision. Our paints are non-toxic and kid-safe.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "What if I mess up?",
+            "answer": "<p>Acrylic paint is forgiving—just paint over mistakes. There's no \"perfect\" way to paint!</p>"
+          }
+        },
+        "faq_6": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I display the finished figurine?",
+            "answer": "<p>Each order includes a display stand. Show it off on a shelf, desk, or anywhere you want!</p>"
+          }
+        }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5", "faq_6"],
+      "settings": {
+        "title": "How Paint Your Own Works",
+        "subtitle": "From order to masterpiece in three simple steps",
+        "step1_title": "Order Online",
+        "step1_text": "<p>Browse our collection of paint-ready figurines and choose your size. Every order includes a complete paint kit with brushes, paints, and step-by-step guide.</p><p>Solo project? Twin Set for two? Party Pack for groups? We have options for every occasion.</p>",
+        "step2_title": "We Ship It",
+        "step2_text": "<p>Your figurine is carefully packaged and shipped within 3-5 business days. Track your order from warehouse to your door.</p>",
+        "step3_title": "You Paint at Home",
+        "step3_text": "<p>Set up anywhere—kitchen table, coffee table, backyard. Follow our guide or freestyle your own design. Most people finish in 2-3 hours.</p><p>There's no wrong way to paint. Every piece is unique.</p>"
+      }
+    }
+  },
+  "order": [
+    "how_it_works_page"
+  ]
+}

@@ -1,0 +1,54 @@
+<section class="section">
+  <div class="container">
+    <h1 class="section__title mb-4">Search Results</h1>
+
+    {%- if search.performed -%}
+      {%- if search.results_count > 0 -%}
+        <p class="mb-4" style="color:var(--color-text-light);">
+          {{ search.results_count }} results for "{{ search.terms }}"
+        </p>
+        <div class="product-grid">
+          {%- for result in search.results -%}
+            {%- if result.object_type == 'product' -%}
+              {% render 'product-card', product: result %}
+            {%- else -%}
+              <div class="product-card">
+                <div class="product-card__info">
+                  <h3 class="product-card__title">
+                    <a href="{{ result.url }}">{{ result.title }}</a>
+                  </h3>
+                  <p style="font-size:0.875rem;color:var(--color-text-light);">
+                    {{ result.content | strip_html | truncatewords: 30 }}
+                  </p>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="text-center" style="padding:40px 0;">
+          <p style="color:var(--color-text-light);margin-bottom:24px;">
+            No results found for "{{ search.terms }}". Try a different search term.
+          </p>
+          <a href="/collections/all" class="btn btn--primary">Browse All Products</a>
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <div class="text-center" style="padding:40px 0;">
+        <form action="/search" method="get" style="max-width:480px;margin:0 auto;">
+          <div style="display:flex;gap:12px;">
+            <input type="text" name="q" placeholder="Search our store..." style="flex:1;padding:14px 20px;border:1px solid var(--color-border);border-radius:8px;font-size:1rem;">
+            <button type="submit" class="btn btn--primary">Search</button>
+          </div>
+        </form>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Search Results",
+  "settings": []
+}
+{% endschema %}

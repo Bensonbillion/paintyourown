@@ -1,0 +1,31 @@
+{%- comment -%}
+  Renders a price display.
+  Accepts:
+  - product: {Object} Shopify product object (optional)
+  - price: {Number} Price in cents (optional)
+  - compare_at_price: {Number} Compare at price in cents (optional)
+  Usage:
+  {% render 'price', product: product %}
+  {% render 'price', price: variant.price, compare_at_price: variant.compare_at_price %}
+{%- endcomment -%}
+
+{%- if product -%}
+  {%- assign display_price = product.price -%}
+  {%- assign display_compare = product.compare_at_price -%}
+  {%- assign price_varies = product.price_varies -%}
+{%- else -%}
+  {%- assign display_price = price -%}
+  {%- assign display_compare = compare_at_price -%}
+  {%- assign price_varies = false -%}
+{%- endif -%}
+
+<span class="price">
+  {%- if price_varies -%}
+    From {{ display_price | money }}
+  {%- else -%}
+    {{ display_price | money }}
+  {%- endif -%}
+  {%- if display_compare > display_price -%}
+    <span class="price--compare">{{ display_compare | money }}</span>
+  {%- endif -%}
+</span>

@@ -1,0 +1,267 @@
+{%- assign product = product -%}
+
+<section class="product-page">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav class="product-page__breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span>&rsaquo;</span>
+      {%- if collection -%}
+        <a href="{{ collection.url }}">{{ collection.title }}</a>
+        <span>&rsaquo;</span>
+      {%- endif -%}
+      <span>{{ product.title }}</span>
+    </nav>
+
+    <div class="product-page__grid">
+      <!-- Product Gallery -->
+      <div class="product-gallery">
+        <div class="product-gallery__main" data-product-main-image>
+          {%- if product.featured_image -%}
+            <img src="{{ product.featured_image | image_url: width: 800 }}"
+                 alt="{{ product.featured_image.alt | escape | default: product.title }}"
+                 width="800"
+                 height="800"
+                 loading="eager"
+                 id="product-main-img">
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag }}
+          {%- endif -%}
+        </div>
+
+        {%- if product.images.size > 1 -%}
+          <div class="product-gallery__thumbs">
+            {%- for image in product.images limit: 5 -%}
+              <button class="product-gallery__thumb{% if forloop.first %} is-active{% endif %}"
+                      data-thumb-index="{{ forloop.index0 }}"
+                      data-image-src="{{ image | image_url: width: 800 }}"
+                      aria-label="View image {{ forloop.index }}">
+                <img src="{{ image | image_url: width: 150 }}"
+                     alt="{{ image.alt | escape | default: product.title }}"
+                     loading="lazy"
+                     width="150"
+                     height="150">
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-info">
+        <h1 class="product-info__title">{{ product.title }}</h1>
+
+        <!-- Rating -->
+        <div class="product-info__rating">
+          <span class="product-info__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="product-info__review-count">4.9 ({{ section.settings.review_count | default: '284' }} reviews)</span>
+        </div>
+
+        <!-- Price -->
+        <div class="product-info__price" data-product-price>
+          {%- if product.compare_at_price > product.price -%}
+            <span>{{ product.price | money }}</span>
+            <span class="product-info__price-compare">{{ product.compare_at_price | money }}</span>
+          {%- else -%}
+            <span>{{ product.price | money }}</span>
+          {%- endif -%}
+        </div>
+
+        <!-- Trust Items -->
+        <div class="product-info__trust">
+          <div class="product-info__trust-item">
+            <span class="product-info__trust-icon">&#10003;</span>
+            <span>Free shipping on orders over $100</span>
+          </div>
+          <div class="product-info__trust-item">
+            <span class="product-info__trust-icon">&#10003;</span>
+            <span>Ships in 3-5 business days</span>
+          </div>
+          <div class="product-info__trust-item">
+            <span class="product-info__trust-icon">&#10003;</span>
+            <span>Complete paint kit included</span>
+          </div>
+        </div>
+
+        <hr class="product-info__divider">
+
+        {%- form 'product', product, data-product-form: '', id: 'product-form' -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
+
+          <!-- Variant Selector (Size) -->
+          {%- if product.has_only_default_variant == false -%}
+            {%- for option in product.options_with_values -%}
+              <div class="variant-selector">
+                <label class="variant-selector__label">{{ option.name }}:</label>
+                <div class="variant-selector__options" data-option-index="{{ forloop.index0 }}">
+                  {%- for value in option.values -%}
+                    {%- assign variant_for_value = product.variants | where: option.name, value | first -%}
+                    <label class="variant-selector__option{% if option.selected_value == value %} is-selected{% endif %}"
+                           data-variant-option>
+                      <input type="radio"
+                             name="{{ option.name }}"
+                             value="{{ value | escape }}"
+                             {% if option.selected_value == value %}checked{% endif %}
+                             data-option-value>
+                      {{ value }}
+                      {%- if variant_for_value -%}
+                        <span style="font-size:0.8125rem;color:var(--color-text-light);margin-left:4px;">
+                          - {{ variant_for_value.price | money }}
+                        </span>
+                      {%- endif -%}
+                    </label>
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
+
+          <!-- Paint Kit Note -->
+          <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px 16px;margin-bottom:24px;font-size:0.9375rem;">
+            <span style="color:#16a34a;font-weight:600;">&#10003; Paint Kit: Included (Free)</span>
+          </div>
+
+          <hr class="product-info__divider">
+
+          <!-- Quantity -->
+          <div class="quantity-selector">
+            <span class="quantity-selector__label">Quantity:</span>
+            <button type="button" class="quantity-selector__btn" data-quantity-minus aria-label="Decrease quantity">-</button>
+            <input type="number" name="quantity" value="1" min="1" class="quantity-selector__input" data-quantity-input aria-label="Quantity">
+            <button type="button" class="quantity-selector__btn" data-quantity-plus aria-label="Increase quantity">+</button>
+          </div>
+
+          <!-- Buttons -->
+          <div class="product-info__buttons">
+            <button type="submit" class="btn btn--primary btn--full btn--large" data-add-to-cart>
+              Add to Cart
+            </button>
+            {%- if product.available -%}
+              {{ form | payment_button }}
+            {%- endif -%}
+          </div>
+        {%- endform -%}
+
+        <hr class="product-info__divider">
+
+        <!-- Accordion -->
+        <div class="accordion">
+          <!-- Description -->
+          <div class="accordion__item is-open">
+            <button class="accordion__header" data-accordion-toggle aria-expanded="true">
+              <span>Description</span>
+              <span class="accordion__icon">&#9660;</span>
+            </button>
+            <div class="accordion__body">
+              <div class="accordion__content">
+                {{ product.description }}
+              </div>
+            </div>
+          </div>
+
+          <!-- What's Included -->
+          <div class="accordion__item">
+            <button class="accordion__header" data-accordion-toggle aria-expanded="false">
+              <span>What's Included</span>
+              <span class="accordion__icon">&#9660;</span>
+            </button>
+            <div class="accordion__body">
+              <div class="accordion__content">
+                <ul>
+                  <li>1 detailed figurine</li>
+                  <li>6 premium acrylic paint colors (2 oz each)</li>
+                  <li>2 detail brushes (fine & medium)</li>
+                  <li>Mixing palette</li>
+                  <li>Step-by-step painting guide</li>
+                  <li>Display stand</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shipping Info -->
+          <div class="accordion__item">
+            <button class="accordion__header" data-accordion-toggle aria-expanded="false">
+              <span>Shipping Info</span>
+              <span class="accordion__icon">&#9660;</span>
+            </button>
+            <div class="accordion__body">
+              <div class="accordion__content">
+                <p>Ships in 3-5 business days via Canada Post. Free shipping on orders over $100. Tracking number provided for all orders.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Return Policy -->
+          <div class="accordion__item">
+            <button class="accordion__header" data-accordion-toggle aria-expanded="false">
+              <span>Return Policy</span>
+              <span class="accordion__icon">&#9660;</span>
+            </button>
+            <div class="accordion__body">
+              <div class="accordion__content">
+                <p>No refunds or exchanges on paint-your-own figurines. If your item arrives damaged, please contact us within 48 hours of delivery with photos and we'll make it right.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQs -->
+          <div class="accordion__item">
+            <button class="accordion__header" data-accordion-toggle aria-expanded="false">
+              <span>FAQs</span>
+              <span class="accordion__icon">&#9660;</span>
+            </button>
+            <div class="accordion__body">
+              <div class="accordion__content">
+                <p><strong>Q: Do I need artistic experience?</strong></p>
+                <p>Absolutely not! Our step-by-step guide makes anyone a pro. Most of our best reviews come from self-described "non-artists."</p>
+                <br>
+                <p><strong>Q: What type of paint is included?</strong></p>
+                <p>Non-toxic acrylic paints, safe for ages 6+. Easy to clean up with water.</p>
+                <br>
+                <p><strong>Q: How long does it take to paint?</strong></p>
+                <p>Most people finish in 2-3 hours. Take your time and enjoy the process!</p>
+                <br>
+                <p><strong>Q: Can I use my own paints?</strong></p>
+                <p>Yes! Our figurines work with acrylics, markers, airbrush, and more.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Share Buttons -->
+        <div class="share-buttons">
+          <span class="share-buttons__label">Share:</span>
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{ product.url }}"
+             target="_blank" rel="noopener" class="share-buttons__link" aria-label="Share on Facebook">FB</a>
+          <a href="https://twitter.com/intent/tweet?url={{ shop.url }}{{ product.url }}&text={{ product.title | url_encode }}"
+             target="_blank" rel="noopener" class="share-buttons__link" aria-label="Share on Twitter">X</a>
+          <a href="https://pinterest.com/pin/create/button/?url={{ shop.url }}{{ product.url }}&media={{ product.featured_image | image_url: width: 600 }}&description={{ product.title | url_encode }}"
+             target="_blank" rel="noopener" class="share-buttons__link" aria-label="Share on Pinterest">Pin</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sticky Add to Cart (Mobile) -->
+<div class="sticky-atc" data-sticky-atc>
+  <button class="btn btn--primary btn--full" data-sticky-add-to-cart>
+    Add to Cart - {{ product.selected_or_first_available_variant.price | money }}
+  </button>
+</div>
+
+{% schema %}
+{
+  "name": "Product Page",
+  "class": "product-page-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "Number of reviews to display",
+      "default": "284"
+    }
+  ]
+}
+{% endschema %}
