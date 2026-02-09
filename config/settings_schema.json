@@ -1,0 +1,209 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Paint Your Own",
+    "theme_version": "1.0.0",
+    "theme_author": "Paint Your Own",
+    "theme_documentation_url": "https://paintyourown.ca",
+    "theme_support_url": "https://paintyourown.ca"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Primary Colors"
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary color",
+        "default": "#FF6B35"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Secondary color",
+        "default": "#4ECDC4"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent color",
+        "default": "#FFE66D"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text color",
+        "default": "#2D3436"
+      },
+      {
+        "type": "color",
+        "id": "color_text_light",
+        "label": "Light text color",
+        "default": "#636E72"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Border color",
+        "default": "#E0E0E0"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Heading font",
+        "default": "poppins_n7"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Body font",
+        "default": "poppins_n4"
+      }
+    ]
+  },
+  {
+    "name": "Announcement Bar",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "announcement_bar_enabled",
+        "label": "Show announcement bar",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "announcement_text_1",
+        "label": "Announcement message 1",
+        "default": "🎨 Free Shipping on orders over $100"
+      },
+      {
+        "type": "text",
+        "id": "announcement_text_2",
+        "label": "Announcement message 2",
+        "default": "💝 Valentine's Twin Sets - Perfect for Date Night"
+      },
+      {
+        "type": "text",
+        "id": "announcement_text_3",
+        "label": "Announcement message 3",
+        "default": "⭐ 4.9★ from 2,500+ happy painters"
+      },
+      {
+        "type": "color",
+        "id": "announcement_bg_color",
+        "label": "Announcement background color",
+        "default": "#2D3436"
+      },
+      {
+        "type": "color",
+        "id": "announcement_text_color",
+        "label": "Announcement text color",
+        "default": "#FFFFFF"
+      }
+    ]
+  },
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "label": "Logo width (px)",
+        "min": 50,
+        "max": 300,
+        "step": 10,
+        "default": 150,
+        "unit": "px"
+      },
+      {
+        "type": "checkbox",
+        "id": "sticky_header",
+        "label": "Enable sticky header",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "range",
+        "id": "free_shipping_threshold",
+        "label": "Free shipping threshold ($)",
+        "min": 0,
+        "max": 500,
+        "step": 5,
+        "default": 100,
+        "unit": "$"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_free_shipping_bar",
+        "label": "Show free shipping progress bar",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "text",
+        "id": "footer_copyright",
+        "label": "Copyright text",
+        "default": "© 2026 Paint Your Own (formerly Assemble-Me)"
+      },
+      {
+        "type": "url",
+        "id": "social_instagram",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "text",
+        "id": "contact_email",
+        "label": "Contact email"
+      }
+    ]
+  },
+  {
+    "name": "SEO",
+    "settings": [
+      {
+        "type": "text",
+        "id": "seo_title",
+        "label": "Default page title",
+        "default": "Paint Your Own - DIY Character Figurines | Paint Kits Canada"
+      },
+      {
+        "type": "textarea",
+        "id": "seo_description",
+        "label": "Default meta description",
+        "default": "Paint-your-own character figurines delivered to your door. Complete paint kits included. Perfect for date nights, family activities, and gifts. Ships across Canada in 3-5 days."
+      }
+    ]
+  }
+]

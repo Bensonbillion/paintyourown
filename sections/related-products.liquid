@@ -1,0 +1,30 @@
+{%- if recommendations.products.size > 0 -%}
+<section class="related-products">
+  <div class="container">
+    <div class="section__header">
+      <h2 class="section__title">{{ section.settings.title | default: 'You May Also Like' }}</h2>
+    </div>
+
+    <div class="product-grid">
+      {%- for product in recommendations.products limit: 4 -%}
+        {% render 'product-card', product: product %}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Related Products",
+  "class": "related-products-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "You May Also Like"
+    }
+  ]
+}
+{% endschema %}

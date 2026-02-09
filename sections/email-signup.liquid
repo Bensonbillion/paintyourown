@@ -1,0 +1,58 @@
+<section class="email-signup">
+  <div class="container container--narrow">
+    <h2 class="email-signup__title">{{ section.settings.title | default: 'Get creative inspiration & exclusive offers' }}</h2>
+    {%- if section.settings.text != blank -%}
+      <p class="email-signup__text">{{ section.settings.text }}</p>
+    {%- endif -%}
+
+    {%- form 'customer', class: 'email-signup__form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input type="email"
+             name="contact[email]"
+             class="email-signup__input"
+             placeholder="{{ section.settings.placeholder | default: 'Enter your email' }}"
+             required
+             aria-label="Email address">
+      <button type="submit" class="email-signup__btn">
+        {{ section.settings.button_label | default: 'Subscribe' }}
+      </button>
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Email Signup",
+  "class": "email-signup-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Get creative inspiration & exclusive offers"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Subtitle text"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Input placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Subscribe"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Email Signup"
+    }
+  ]
+}
+{% endschema %}

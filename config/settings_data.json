@@ -1,0 +1,37 @@
+{
+  "current": {
+    "color_primary": "#FF6B35",
+    "color_secondary": "#4ECDC4",
+    "color_accent": "#FFE66D",
+    "color_background": "#FFFFFF",
+    "color_text": "#2D3436",
+    "color_text_light": "#636E72",
+    "color_border": "#E0E0E0",
+    "font_heading": "poppins_n7",
+    "font_body": "poppins_n4",
+    "announcement_bar_enabled": true,
+    "announcement_text_1": "🎨 Free Shipping on orders over $100",
+    "announcement_text_2": "💝 Valentine's Twin Sets - Perfect for Date Night",
+    "announcement_text_3": "⭐ 4.9★ from 2,500+ happy painters",
+    "announcement_bg_color": "#2D3436",
+    "announcement_text_color": "#FFFFFF",
+    "logo_width": 150,
+    "sticky_header": true,
+    "free_shipping_threshold": 100,
+    "show_free_shipping_bar": true,
+    "footer_copyright": "© 2026 Paint Your Own (formerly Assemble-Me)",
+    "seo_title": "Paint Your Own - DIY Character Figurines | Paint Kits Canada",
+    "seo_description": "Paint-your-own character figurines delivered to your door. Complete paint kits included. Perfect for date nights, family activities, and gifts. Ships across Canada in 3-5 days.",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      }
+    },
+    "content_for_index": []
+  }
+}
